@@ -189,15 +189,15 @@
 <body>
     <div class="container">
         <h1>💪 Plate Calculator</h1>
-        <p class="subtitle">Calculate plates needed for one side of the bar</p>
+        <div class="subtitle">Calculate plates needed (per side for barbell, total for prowler)</div>
 
 ```
     <div class="input-group">
         <label for="equipment">Equipment</label>
         <select id="equipment" onchange="updateMinWeight()">
-            <option value="45">Barbell (45 lbs)</option>
-            <option value="65">Prowler (65 lbs)</option>
-            <option value="0">Lat Pulldown (0 lbs)</option>
+            <option value="45-2">Barbell (45 lbs)</option>
+            <option value="65-1">Prowler (65 lbs)</option>
+            <option value="0-2">Lat Pulldown (0 lbs)</option>
         </select>
     </div>
     
@@ -214,7 +214,7 @@
         <div class="result-header">
             <strong>Target:</strong> <span id="targetWeight"></span> lbs<br>
             <strong>Equipment:</strong> <span id="equipmentName"></span><br>
-            <strong>Per side:</strong> <span id="perSide"></span> lbs
+            <strong id="perSideLabel">Per side:</strong> <span id="perSide"></span> lbs
         </div>
         
         <div class="plates-list" id="platesList">
@@ -243,9 +243,9 @@
     function updateMinWeight() {
         const equipmentSelect = document.getElementById('equipment');
         const weightInput = document.getElementById('weight');
-        const equipmentWeight = parseFloat(equipmentSelect.value);
-        weightInput.min = equipmentWeight;
-        if (parseFloat(weightInput.value) < equipmentWeight) {
+        const [equipmentWeight, sides] = equipmentSelect.value.split('-');
+        weightInput.min = parseFloat(equipmentWeight);
+        if (parseFloat(weightInput.value) < parseFloat(equipmentWeight)) {
             weightInput.value = '';
         }
     }
@@ -254,7 +254,9 @@
         const input = document.getElementById('weight');
         const equipmentSelect = document.getElementById('equipment');
         const targetWeight = parseFloat(input.value);
-        const barWeight = parseFloat(equipmentSelect.value);
+        const [equipmentWeightStr, sidesStr] = equipmentSelect.value.split('-');
+        const barWeight = parseFloat(equipmentWeightStr);
+        const sides = parseInt(sidesStr);
         const equipmentName = equipmentSelect.options[equipmentSelect.selectedIndex].text;
         const errorDiv = document.getElementById('error');
         const resultsDiv = document.getElementById('results');
@@ -267,7 +269,8 @@
             return;
         }
         
-        const weightPerSide = (targetWeight - barWeight) / 2;
+        // Calculate weight needed (per side for barbell, total for prowler)
+        const weightToLoad = (targetWeight - barWeight) / sides;
         
         let platesNeeded = [];
         let remainingWeight = weightPerSide;
