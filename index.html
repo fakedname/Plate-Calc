@@ -218,7 +218,7 @@
         </div>
         
         <div class="plates-list" id="platesList">
-            <h3>Load (from inside out):</h3>
+            <h3 id="platesHeader">Load (from inside out):</h3>
             <div id="platesContent"></div>
         </div>
         
@@ -264,16 +264,15 @@
         errorDiv.textContent = '';
         
         if (isNaN(targetWeight) || targetWeight < barWeight) {
-            errorDiv.textContent = `Please enter a valid weight greater than ${barWeight} lbs`;
+            errorDiv.textContent = 'Please enter a valid weight greater than ' + barWeight + ' lbs';
             resultsDiv.classList.remove('show');
             return;
         }
         
-        // Calculate weight needed (per side for barbell, total for prowler)
         const weightToLoad = (targetWeight - barWeight) / sides;
         
         let platesNeeded = [];
-        let remainingWeight = weightPerSide;
+        let remainingWeight = weightToLoad;
         const plateWeights = [45, 25, 10, 5, 2.5, 1, 0.25];
         
         for (let weight of plateWeights) {
@@ -288,18 +287,24 @@
             }
         }
         
-        const actualWeight = barWeight + (weightPerSide - remainingWeight) * 2;
+        const actualWeight = barWeight + (weightToLoad - remainingWeight) * sides;
         
         document.getElementById('targetWeight').textContent = targetWeight;
         document.getElementById('equipmentName').textContent = equipmentName;
-        document.getElementById('perSide').textContent = weightPerSide;
+        document.getElementById('perSide').textContent = weightToLoad.toFixed(1);
+        
+        const perSideLabel = document.getElementById('perSideLabel');
+        perSideLabel.textContent = sides === 1 ? 'Total plates:' : 'Per side:';
+        
+        const platesHeader = document.getElementById('platesHeader');
+        platesHeader.textContent = sides === 1 ? 'Load (total):' : 'Load (from inside out):';
         
         const platesContent = document.getElementById('platesContent');
         if (platesNeeded.length === 0) {
-            platesContent.innerHTML = '<div class="plate-item">Just the bar!</div>';
+            platesContent.innerHTML = '<div class="plate-item">Just the equipment!</div>';
         } else {
             platesContent.innerHTML = platesNeeded.map(plate => 
-                `<div class="plate-item">${plate.count}x ${plate.weight} lb</div>`
+                '<div class="plate-item">' + plate.count + 'x ' + plate.weight + ' lb</div>'
             ).join('');
         }
         
@@ -307,10 +312,7 @@
         const percentagesDiv = document.getElementById('percentages');
         percentagesDiv.innerHTML = percentages.map(pct => {
             const pctWeight = Math.round((actualWeight * pct / 100) / 5) * 5;
-            return `<div class="pct-item">
-                <span class="pct-label">${pct}%:</span>
-                <span class="pct-value">${pctWeight} lbs</span>
-            </div>`;
+            return '<div class="pct-item"><span class="pct-label">' + pct + '%:</span><span class="pct-value">' + pctWeight + ' lbs</span></div>';
         }).join('');
         
         resultsDiv.classList.add('show');
