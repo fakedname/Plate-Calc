@@ -2,289 +2,287 @@
 
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plate Calculator</title>
-<style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plate Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
 ```
-body {
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-min-height: 100vh;
-padding: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.container {
-background: white;
-border-radius: 20px;
-padding: 30px;
-max-width: 500px;
-width: 100%;
-box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
-h1 {
-color: #333;
-margin-bottom: 10px;
-font-size: 28px;
-}
-
-.subtitle {
-color: #666;
-margin-bottom: 25px;
-font-size: 14px;
-}
-
-.input-group {
-margin-bottom: 20px;
-}
-
-label {
-display: block;
-margin-bottom: 8px;
-color: #555;
-font-weight: 600;
-}
-
-input[type="number"] {
-width: 100%;
-padding: 15px;
-font-size: 24px;
-border: 2px solid #ddd;
-border-radius: 10px;
-text-align: center;
-transition: border-color 0.3s;
-}
-
-input[type="number"]:focus {
-outline: none;
-border-color: #667eea;
-}
-
-button {
-width: 100%;
-padding: 15px;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-color: white;
-border: none;
-border-radius: 10px;
-font-size: 18px;
-font-weight: 600;
-cursor: pointer;
-transition: transform 0.2s;
-}
-
-button:active {
-transform: scale(0.98);
-}
-
-.results {
-margin-top: 25px;
-padding: 20px;
-background: #f8f9fa;
-border-radius: 10px;
-display: none;
-}
-
-.results.show {
-display: block;
-}
-
-.result-header {
-font-size: 14px;
-color: #666;
-margin-bottom: 15px;
-}
-
-.result-header strong {
-color: #333;
-font-size: 16px;
-}
-
-.plates-list {
-background: white;
-padding: 15px;
-border-radius: 8px;
-margin-bottom: 15px;
-}
-
-.plates-list h3 {
-color: #667eea;
-margin-bottom: 10px;
-font-size: 16px;
-}
-
-.plate-item {
-padding: 10px;
-margin: 5px 0;
-background: #f0f0f0;
-border-radius: 5px;
-font-size: 18px;
-font-weight: 600;
-}
-
-.percentages {
-background: white;
-padding: 15px;
-border-radius: 8px;
-}
-
-.percentages h3 {
-color: #667eea;
-margin-bottom: 10px;
-font-size: 16px;
-}
-
-.pct-item {
-padding: 8px;
-margin: 5px 0;
-display: flex;
-justify-content: space-between;
-font-size: 16px;
-}
-
-.pct-label {
-font-weight: 600;
-color: #555;
-}
-
-.pct-value {
-color: #333;
-}
-
-.error {
-color: #e74c3c;
-margin-top: 10px;
-font-size: 14px;
-}
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .container {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 28px;
+    }
+    
+    .subtitle {
+        color: #666;
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+    
+    .input-group {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: 600;
+    }
+    
+    input[type="number"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 24px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        text-align: center;
+        transition: border-color 0.3s;
+    }
+    
+    input[type="number"]:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+    
+    button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    
+    button:active {
+        transform: scale(0.98);
+    }
+    
+    .results {
+        margin-top: 25px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        display: none;
+    }
+    
+    .results.show {
+        display: block;
+    }
+    
+    .result-header {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+    }
+    
+    .result-header strong {
+        color: #333;
+        font-size: 16px;
+    }
+    
+    .plates-list {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .plates-list h3 {
+        color: #667eea;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    
+    .plate-item {
+        padding: 10px;
+        margin: 5px 0;
+        background: #f0f0f0;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .percentages {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .percentages h3 {
+        color: #667eea;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    
+    .pct-item {
+        padding: 8px;
+        margin: 5px 0;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+    }
+    
+    .pct-label {
+        font-weight: 600;
+        color: #555;
+    }
+    
+    .pct-value {
+        color: #333;
+    }
+    
+    .error {
+        color: #e74c3c;
+        margin-top: 10px;
+        font-size: 14px;
+    }
 </style>
 ```
 
 </head>
 <body>
-<div class="container">
-<h1>💪 Plate Calculator</h1>
-<p class="subtitle">Calculate plates needed for one side of the bar</p>
+    <div class="container">
+        <h1>💪 Plate Calculator</h1>
+        <p class="subtitle">Calculate plates needed for one side of the bar</p>
 
 ```
-<div class="input-group">
-<label for="weight">Target Weight (lbs)</label>
-<input type="number" id="weight" inputmode="decimal" placeholder="225" step="0.25" min="45">
-</div>
-
-<button onclick="calculate()">Calculate</button>
-
-<div id="error" class="error"></div>
-
-<div id="results" class="results">
-<div class="result-header">
-<strong>Target:</strong> <span id="targetWeight"></span> lbs<br>
-<strong>Bar:</strong> 45 lbs<br>
-<strong>Per side:</strong> <span id="perSide"></span> lbs
-</div>
-
-<div class="plates-list" id="platesList">
-<h3>Load (from inside out):</h3>
-<div id="platesContent"></div>
-</div>
-
-<div class="percentages">
-<h3>Training Percentages</h3>
-<div id="percentages"></div>
-</div>
-</div>
+    <div class="input-group">
+        <label for="weight">Target Weight (lbs)</label>
+        <input type="number" id="weight" inputmode="decimal" placeholder="225" step="0.25" min="45">
+    </div>
+    
+    <button onclick="calculate()">Calculate</button>
+    
+    <div id="error" class="error"></div>
+    
+    <div id="results" class="results">
+        <div class="result-header">
+            <strong>Target:</strong> <span id="targetWeight"></span> lbs<br>
+            <strong>Bar:</strong> 45 lbs<br>
+            <strong>Per side:</strong> <span id="perSide"></span> lbs
+        </div>
+        
+        <div class="plates-list" id="platesList">
+            <h3>Load (from inside out):</h3>
+            <div id="platesContent"></div>
+        </div>
+        
+        <div class="percentages">
+            <h3>Training Percentages</h3>
+            <div id="percentages"></div>
+        </div>
+    </div>
 </div>
 
 <script>
-const availablePlates = {
-45: 4,
-25: 1,
-10: 2,
-5: 1,
-2.5: 1,
-1: 1,
-0.25: 1
-};
-
-const barWeight = 45;
-
-function calculate() {
-const input = document.getElementById('weight');
-const targetWeight = parseFloat(input.value);
-const errorDiv = document.getElementById('error');
-const resultsDiv = document.getElementById('results');
-
-errorDiv.textContent = '';
-
-if (isNaN(targetWeight) || targetWeight < barWeight) {
-errorDiv.textContent = 'Please enter a valid weight greater than 45 lbs';
-resultsDiv.classList.remove('show');
-return;
-}
-
-const weightPerSide = (targetWeight - barWeight) / 2;
-
-let platesNeeded = [];
-let remainingWeight = weightPerSide;
-const plateWeights = [45, 25, 10, 5, 2.5, 1, 0.25];
-
-for (let weight of plateWeights) {
-let count = 0;
-while (remainingWeight >= weight && count < availablePlates[weight]) {
-count++;
-remainingWeight -= weight;
-remainingWeight = Math.round(remainingWeight * 100) / 100;
-}
-if (count > 0) {
-platesNeeded.push({ weight: weight, count: count });
-}
-}
-
-const actualWeight = barWeight + (weightPerSide - remainingWeight) * 2;
-
-document.getElementById('targetWeight').textContent = targetWeight;
-document.getElementById('perSide').textContent = weightPerSide;
-
-const platesContent = document.getElementById('platesContent');
-if (platesNeeded.length === 0) {
-platesContent.innerHTML = '<div class="plate-item">Just the bar!</div>';
-} else {
-platesContent.innerHTML = platesNeeded.map(plate => 
-`<div class="plate-item">${plate.count}x ${plate.weight} lb</div>`
-).join('');
-}
-
-const percentages = [90, 85, 80, 75, 70, 65, 60];
-const percentagesDiv = document.getElementById('percentages');
-percentagesDiv.innerHTML = percentages.map(pct => {
-const pctWeight = Math.round((actualWeight * pct / 100) * 2) / 2;
-return `<div class="pct-item">
-<span class="pct-label">${pct}%:</span>
-<span class="pct-value">${pctWeight} lbs</span>
-</div>`;
-}).join('');
-
-resultsDiv.classList.add('show');
-}
-
-document.getElementById('weight').addEventListener('keypress', function(e) {
-if (e.key === 'Enter') {
-calculate();
-}
-});
+    const availablePlates = {
+        45: 4,
+        25: 1,
+        10: 2,
+        5: 1,
+        2.5: 1,
+        1: 1,
+        0.25: 1
+    };
+    
+    const barWeight = 45;
+    
+    function calculate() {
+        const input = document.getElementById('weight');
+        const targetWeight = parseFloat(input.value);
+        const errorDiv = document.getElementById('error');
+        const resultsDiv = document.getElementById('results');
+        
+        errorDiv.textContent = '';
+        
+        if (isNaN(targetWeight) || targetWeight < barWeight) {
+            errorDiv.textContent = 'Please enter a valid weight greater than 45 lbs';
+            resultsDiv.classList.remove('show');
+            return;
+        }
+        
+        const weightPerSide = (targetWeight - barWeight) / 2;
+        
+        let platesNeeded = [];
+        let remainingWeight = weightPerSide;
+        const plateWeights = [45, 25, 10, 5, 2.5, 1, 0.25];
+        
+        for (let weight of plateWeights) {
+            let count = 0;
+            while (remainingWeight >= weight && count < availablePlates[weight]) {
+                count++;
+                remainingWeight -= weight;
+                remainingWeight = Math.round(remainingWeight * 100) / 100;
+            }
+            if (count > 0) {
+                platesNeeded.push({ weight: weight, count: count });
+            }
+        }
+        
+        const actualWeight = barWeight + (weightPerSide - remainingWeight) * 2;
+        
+        document.getElementById('targetWeight').textContent = targetWeight;
+        document.getElementById('perSide').textContent = weightPerSide;
+        
+        const platesContent = document.getElementById('platesContent');
+        if (platesNeeded.length === 0) {
+            platesContent.innerHTML = '<div class="plate-item">Just the bar!</div>';
+        } else {
+            platesContent.innerHTML = platesNeeded.map(plate => 
+                `<div class="plate-item">${plate.count}x ${plate.weight} lb</div>`
+            ).join('');
+        }
+        
+        const percentages = [90, 85, 80, 75, 70, 65, 60];
+        const percentagesDiv = document.getElementById('percentages');
+        percentagesDiv.innerHTML = percentages.map(pct => {
+            const pctWeight = Math.round((actualWeight * pct / 100) / 5) * 5;
+            return `<div class="pct-item">
+                <span class="pct-label">${pct}%:</span>
+                <span class="pct-value">${pctWeight} lbs</span>
+            </div>`;
+        }).join('');
+        
+        resultsDiv.classList.add('show');
+    }
+    
+    document.getElementById('weight').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            calculate();
+        }
+    });
 </script>
 ```
 
 </body>
-
 </html>
-
