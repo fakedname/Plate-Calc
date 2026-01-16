@@ -263,7 +263,7 @@ platesContent.innerHTML = platesNeeded.map(plate =>
 ).join('');
 }
 
-const percentages = [90, 85, 80, 75, 70, 65, 70];
+const percentages = [90, 85, 80, 75, 70, 65, 60];
 const percentagesDiv = document.getElementById('percentages');
 percentagesDiv.innerHTML = percentages.map(pct => {
 const pctWeight = Math.round((actualWeight * pct / 100) * 2) / 2;
@@ -287,3 +287,4 @@ calculate();
 </body>
 
 </html>
+
