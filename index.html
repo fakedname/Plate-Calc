@@ -46,6 +46,35 @@
     
     .input-group {
         margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .clear-input {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #999;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        line-height: 1;
+    }
+    
+    .clear-input.show {
+        display: flex;
+    }
+    
+    .clear-input:active {
+        background: #666;
     }
     
     label {
@@ -203,7 +232,8 @@
     
     <div class="input-group">
         <label for="weight">Target Weight (lbs)</label>
-        <input type="number" id="weight" inputmode="decimal" placeholder="225" step="0.25" min="45">
+        <input type="number" id="weight" inputmode="decimal" placeholder="225" step="0.25" min="45" oninput="toggleClearButton()">
+        <button class="clear-input" id="clearBtn" onclick="clearWeight()">×</button>
     </div>
     
     <button onclick="calculate()">Calculate</button>
@@ -239,6 +269,24 @@
         1: 1,
         0.25: 1
     };
+    
+    function toggleClearButton() {
+        const input = document.getElementById('weight');
+        const clearBtn = document.getElementById('clearBtn');
+        
+        if (input.value) {
+            clearBtn.classList.add('show');
+        } else {
+            clearBtn.classList.remove('show');
+        }
+    }
+    
+    function clearWeight() {
+        document.getElementById('weight').value = '';
+        document.getElementById('clearBtn').classList.remove('show');
+        document.getElementById('results').classList.remove('show');
+        document.getElementById('weight').focus();
+    }
     
     function updateMinWeight() {
         const equipmentSelect = document.getElementById('equipment');
